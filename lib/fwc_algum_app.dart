@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:fwc_album_app/app/core/rest/custom_dio.dart';
-import 'package:fwc_album_app/app/pages/auth/login/login_page.dart';
-import 'package:fwc_album_app/app/pages/auth/register/register_page.dart';
+import 'package:fwc_album_app/app/pages/auth/login/login_route.dart';
+import 'package:fwc_album_app/app/pages/auth/register/register_route.dart';
 import 'package:fwc_album_app/app/pages/home/home_page.dart';
 import 'package:fwc_album_app/app/pages/splash/splash_route.dart';
 import 'package:fwc_album_app/app/repositoy/auth/auth_repository.dart';
@@ -27,8 +27,8 @@ class FwcAlgumApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           routes: {
             '/': (_) => const SplashRoute(),
-            '/auth/login': (_) => const LoginPage(),
-            '/auth/register': (_) => const RegisterPage(),
+            '/auth/login': (_) => const LoginRoute(),
+            '/auth/register': (_) => const RegisterRoute(),
             '/home': (_) => const HomePage(),
           }),
     );
