@@ -10,11 +10,13 @@ abstract class MyStickersViewImpl extends State<MyStickersPage>
     with Messages<MyStickersPage>, Loader<MyStickersPage>
     implements MyStickersView {
   var album = <GrouperStickers>[];
+  var statusFilter = 'all';
 
   @override
   void initState() {
     widget.presenter.view = this;
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      showLoader();
       widget.presenter.getMyAlbum();
     });
     super.initState();
@@ -25,8 +27,16 @@ abstract class MyStickersViewImpl extends State<MyStickersPage>
 
   @override
   void loadedPage(List<GrouperStickers> album) {
+    hideLoader();
     setState(() {
       this.album = album;
+    });
+  }
+
+  @override
+  void updateStatusFilter(status) {
+    setState(() {
+      statusFilter = status;
     });
   }
 }

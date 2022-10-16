@@ -29,11 +29,11 @@ class _MyStickersPageState extends MyStickersViewImpl {
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-            child: Column(children: const [
+            child: Column(children: [
               StickerStatusFilter(
-                filterSelected: '',
+                filterSelected: statusFilter,
               ),
-              StickerGroupFilter(),
+              const StickerGroupFilter(),
               // SizedBox(height: 20),
             ]),
           ),
@@ -41,7 +41,10 @@ class _MyStickersPageState extends MyStickersViewImpl {
             delegate: SliverChildBuilderDelegate(
               (context, index) {
                 final group = album[index];
-                return StickerGroup(group: group);
+                return StickerGroup(
+                  group: group,
+                  statusFilter: statusFilter,
+                );
               },
               childCount: album.length,
             ),

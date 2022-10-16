@@ -9,6 +9,7 @@ class MyStickersPresenterImpl implements MyStickersPresenter {
   StickersRepository stickersRepository;
   late final MyStickersView _view;
   var album = <GrouperStickers>[];
+  var statusSelected = 'all';
 
   MyStickersPresenterImpl({
     required this.stickersRepository,
@@ -21,4 +22,10 @@ class MyStickersPresenterImpl implements MyStickersPresenter {
 
   @override
   set view(MyStickersView view) => _view = view;
+
+  @override
+  Future<void> statusFilter(String status) async {
+    statusSelected = status;
+    _view.updateStatusFilter(status);
+  }
 }
