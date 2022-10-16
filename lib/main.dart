@@ -4,5 +4,5 @@ import 'package:fwc_album_app/fwc_algum_app.dart';
 
 void main() async {
   await Env.i.load();
-  runApp(const FwcAlgumApp());
+  runApp(FwcAlgumApp());
 }

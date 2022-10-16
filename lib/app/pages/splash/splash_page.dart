@@ -23,7 +23,10 @@ class _SplashPageState extends SplashViewImpl {
       body: DecoratedBox(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/background_splash.png'),
+            image: AssetImage(
+              'assets/images/background_splash.png',
+            ),
+            fit: BoxFit.cover,
           ),
         ),
         child: Stack(
@@ -62,7 +65,9 @@ class _SplashPageState extends SplashViewImpl {
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 20),
-                child: Image.asset('assets/images/bandeiras.png'),
+                child: Image.asset(
+                  'assets/images/bandeiras.png',
+                ),
               ),
             )
           ],
