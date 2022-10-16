@@ -41,7 +41,7 @@ class GrouperStickers {
       stickersStart: map['stickers_start']?.toInt() ?? 0,
       stickersEnd: map['stickers_end']?.toInt() ?? 0,
       stickers: List<UserStickerModel>.from(
-        (map['stickers'] as List<int>).map<UserStickerModel>(
+        (map['stickers'] as List<dynamic>).map<UserStickerModel>(
           (x) => UserStickerModel.fromMap(x as Map<String, dynamic>),
         ),
       ),

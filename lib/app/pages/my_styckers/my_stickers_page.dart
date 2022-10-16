@@ -1,12 +1,25 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
+import 'package:fwc_album_app/app/pages/my_styckers/presenter/my_stickers_presenter.dart';
+import 'package:fwc_album_app/app/pages/my_styckers/view/my_stickers_view_impl.dart';
 import 'package:fwc_album_app/app/pages/my_styckers/widgets/sticker_group.dart';
 import 'package:fwc_album_app/app/pages/my_styckers/widgets/sticker_group_filter.dart';
 
 import 'widgets/sticker_status_filter.dart';
 
-class MyStickersPage extends StatelessWidget {
-  const MyStickersPage({super.key});
+class MyStickersPage extends StatefulWidget {
+  final MyStickersPresenter presenter;
+  const MyStickersPage({
+    Key? key,
+    required this.presenter,
+  }) : super(key: key);
 
+  @override
+  State<MyStickersPage> createState() => _MyStickersPageState();
+}
+
+class _MyStickersPageState extends MyStickersViewImpl {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,9 +40,10 @@ class MyStickersPage extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return const StickerGroup();
+                final group = album[index];
+                return StickerGroup(group: group);
               },
-              childCount: 2,
+              childCount: album.length,
             ),
           )
         ],

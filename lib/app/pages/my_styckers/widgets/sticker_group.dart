@@ -1,11 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:fwc_album_app/app/core/ui/styles/colors_app.dart';
 
+import 'package:fwc_album_app/app/core/ui/styles/colors_app.dart';
 import 'package:fwc_album_app/app/core/ui/styles/text_styles.dart';
+import 'package:fwc_album_app/app/models/grouper_stickers.dart';
+import 'package:fwc_album_app/app/models/user_sticker_model.dart';
 
 class StickerGroup extends StatelessWidget {
-  const StickerGroup({super.key});
+  final GrouperStickers group;
+
+  const StickerGroup({super.key, required this.group});
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +25,18 @@ class StickerGroup extends StatelessWidget {
               maxHeight: double.infinity,
               child: ClipRect(
                 child: Align(
-                  alignment: const Alignment(0, -0.1),
-                  widthFactor: 1,
-                  heightFactor: 0.1,
-                  child: Image.asset(
-                    'assets/images/flags/BRA.png',
-                    cacheHeight:
-                        (MediaQuery.of(context).size.width * 3).toInt(),
-                  ),
-                ),
+                    alignment: const Alignment(0, -0.1),
+                    widthFactor: 0.5,
+                    heightFactor: 0.1,
+                    child: Image.network(
+                      group.flag,
+                      cacheHeight:
+                          (MediaQuery.of(context).size.width * 1.8).toInt(),
+                    )
+                    // Image.asset('assets/images/flags/BRA.png',cacheHeight:
+                    //       (MediaQuery.of(context).size.width * 3).toInt(),
+                    // ),
+                    ),
               ),
             ),
           ),
@@ -37,7 +44,7 @@ class StickerGroup extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Text(
-              'Brasil',
+              group.countryName,
               style: context.textStyles.titleBlack.copyWith(fontSize: 26),
             ),
           ),
@@ -51,8 +58,18 @@ class StickerGroup extends StatelessWidget {
               mainAxisSpacing: 10,
             ),
             itemBuilder: (context, index) {
+              final stickerNumber = '${group.stickersStart + index}';
+
+              final stickerList = group.stickers
+                  .where((sticker) => sticker.stickerNumber == stickerNumber);
+
+              final sticker = stickerList.isNotEmpty ? stickerList.first : null;
+
               return Sticker(
-                index: index,
+                stickerNumber: stickerNumber,
+                sticker: sticker,
+                countryName: group.countryName,
+                countryCode: group.countryCode,
               );
             },
           )
@@ -63,10 +80,17 @@ class StickerGroup extends StatelessWidget {
 }
 
 class Sticker extends StatelessWidget {
-  final int index;
+  final String stickerNumber;
+  final UserStickerModel? sticker;
+  final String countryName;
+  final String countryCode;
+
   const Sticker({
     Key? key,
-    required this.index,
+    required this.stickerNumber,
+    required this.sticker,
+    required this.countryName,
+    required this.countryCode,
   }) : super(key: key);
 
   @override
@@ -74,10 +98,10 @@ class Sticker extends StatelessWidget {
     return InkWell(
         onTap: () {},
         child: Container(
-          color: index % 2 == 0 ? context.colors.primary : context.colors.grey,
+          color: sticker != null ? context.colors.primary : context.colors.grey,
           child: Column(children: [
             Visibility(
-              visible: index % 2 == 0,
+              visible: (sticker?.duplicate ?? 0) > 0,
               maintainSize: true,
               maintainAnimation: true,
               maintainState: true,
@@ -85,21 +109,21 @@ class Sticker extends StatelessWidget {
                 alignment: Alignment.topRight,
                 padding: const EdgeInsets.all(2),
                 child: Text(
-                  '1',
+                  sticker?.duplicate.toString() ?? '',
                   style: context.textStyles.textSecondaryFontMedium
                       .copyWith(color: context.colors.yellow),
                 ),
               ),
             ),
             Text(
-              'BRA',
+              countryCode,
               style: context.textStyles.textSecondaryFontExtraBold.copyWith(
-                  color: index % 2 == 0 ? Colors.white : Colors.black),
+                  color: sticker != null ? Colors.white : Colors.black),
             ),
             Text(
-              '${index + 1}',
+              stickerNumber,
               style: context.textStyles.textSecondaryFontExtraBold.copyWith(
-                  color: index % 2 == 0 ? Colors.white : Colors.black),
+                  color: sticker != null ? Colors.white : Colors.black),
             ),
           ]),
         ));
