@@ -34,13 +34,13 @@ class ButtonStyles {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
-        side: BorderSide(color: ColorsApp.instance.yellow),
+        // side: BorderSide(color: ColorsApp.instance.yellow),
         textStyle: TextStyles.instance.textSecondaryFontExtraBold.copyWith(
           fontSize: 14,
         ),
       );
 
-        ButtonStyle get primaryOutlineButton => OutlinedButton.styleFrom(
+  ButtonStyle get primaryOutlineButton => OutlinedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
