@@ -10,6 +10,7 @@ class MyStickersPresenterImpl implements MyStickersPresenter {
   late final MyStickersView _view;
   var album = <GrouperStickers>[];
   var statusSelected = 'all';
+  List<String>? countries;
 
   MyStickersPresenterImpl({
     required this.stickersRepository,
@@ -27,5 +28,20 @@ class MyStickersPresenterImpl implements MyStickersPresenter {
   Future<void> statusFilter(String status) async {
     statusSelected = status;
     _view.updateStatusFilter(status);
+  }
+
+  @override
+  void countryFilter(List<String>? countries) {
+    this.countries = countries;
+    if (countries == null) {
+      // Atualiza a tela com todos os grupos
+      _view.updateAlbum(album);
+    } else {
+      // Atualiza a lista filtrando os grupos selecionados
+      final albumFilter = [
+        ...album.where((element) => countries.contains(element.countryCode))
+      ];
+      _view.updateAlbum(albumFilter);
+    }
   }
 }

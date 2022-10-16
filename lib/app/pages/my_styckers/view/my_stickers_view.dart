@@ -4,4 +4,5 @@ abstract class MyStickersView {
   void loadedPage(List<GrouperStickers> album);
   void error(String message);
   void updateStatusFilter(status);
+  void updateAlbum(List<GrouperStickers> album);
 }
