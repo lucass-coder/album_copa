@@ -7,7 +7,7 @@ import 'package:fwc_album_app/app/models/grouper_stickers.dart';
 import 'package:fwc_album_app/app/models/user_sticker_model.dart';
 
 class StickerGroup extends StatelessWidget {
-  final GrouperStickers group;
+  final GroupsStickers group;
   final String statusFilter;
 
   const StickerGroup({

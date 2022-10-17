@@ -1,8 +1,8 @@
 import 'package:fwc_album_app/app/models/grouper_stickers.dart';
 
 abstract class MyStickersView {
-  void loadedPage(List<GrouperStickers> album);
+  void loadedPage(List<GroupsStickers> album);
   void error(String message);
   void updateStatusFilter(status);
-  void updateAlbum(List<GrouperStickers> album);
+  void updateAlbum(List<GroupsStickers> album);
 }

@@ -9,7 +9,7 @@ import './my_stickers_view.dart';
 abstract class MyStickersViewImpl extends State<MyStickersPage>
     with Messages<MyStickersPage>, Loader<MyStickersPage>
     implements MyStickersView {
-  var album = <GrouperStickers>[];
+  var album = <GroupsStickers>[];
   var statusFilter = 'all';
   var countries = <String, String>{};
 
@@ -27,7 +27,7 @@ abstract class MyStickersViewImpl extends State<MyStickersPage>
   void error(String message) => showError(message);
 
   @override
-  void loadedPage(List<GrouperStickers> album) {
+  void loadedPage(List<GroupsStickers> album) {
     hideLoader();
     setState(() {
       this.album = album;
@@ -45,7 +45,7 @@ abstract class MyStickersViewImpl extends State<MyStickersPage>
   }
 
   @override
-  void updateAlbum(List<GrouperStickers> album) {
+  void updateAlbum(List<GroupsStickers> album) {
     hideLoader();
     setState(() {
       this.album = album;

@@ -8,7 +8,7 @@ import './my_stickers_presenter.dart';
 class MyStickersPresenterImpl implements MyStickersPresenter {
   StickersRepository stickersRepository;
   late final MyStickersView _view;
-  var album = <GrouperStickers>[];
+  var album = <GroupsStickers>[];
   var statusSelected = 'all';
   List<String>? countries;
 

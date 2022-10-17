@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:fwc_album_app/app/models/user_sticker_model.dart';
 
-class GrouperStickers {
+class GroupsStickers {
   final int id;
   final String countryCode;
   final String countryName;
@@ -11,7 +11,7 @@ class GrouperStickers {
   final int stickersEnd;
   final List<UserStickerModel> stickers;
   final String flag;
-  GrouperStickers({
+  GroupsStickers({
     required this.id,
     required this.countryCode,
     required this.countryName,
@@ -33,8 +33,8 @@ class GrouperStickers {
     };
   }
 
-  factory GrouperStickers.fromMap(Map<String, dynamic> map) {
-    return GrouperStickers(
+  factory GroupsStickers.fromMap(Map<String, dynamic> map) {
+    return GroupsStickers(
       id: map['id'] as int,
       countryCode: map['country_code'] ?? '',
       countryName: map['country_name'] ?? '',
@@ -51,6 +51,6 @@ class GrouperStickers {
 
   String toJson() => json.encode(toMap());
 
-  factory GrouperStickers.fromJson(String source) =>
-      GrouperStickers.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory GroupsStickers.fromJson(String source) =>
+      GroupsStickers.fromMap(json.decode(source) as Map<String, dynamic>);
 }
